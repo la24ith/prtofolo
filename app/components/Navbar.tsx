@@ -10,11 +10,31 @@ import { Menu, X, Globe } from 'lucide-react';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const { language, setLanguage, t, dir } = useLanguage();
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      
+      // تحديد السكشن النشط
+      const sections = ['about', 'skills', 'experience', 'projects', 'services', 'content', 'contact'];
+      let currentSection = '';
+      
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150) {
+            currentSection = section;
+          }
+        }
+      });
+      
+      setActiveSection(currentSection);
+    };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -23,15 +43,40 @@ export default function Navbar() {
     setLanguage(language === 'en' ? 'ar' : 'en');
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    // إغلاق القائمة في الموبايل
+    setIsOpen(false);
+    
+    if (href.startsWith('/#')) {
+      const sectionId = href.replace('/#', '');
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 80; // ارتفاع النافبار
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      // للروابط العادية مثل /projects و /blog
+      window.location.href = href;
+    }
+  };
+
   const navLinks = [
-    { href: '/#about', label: t('nav.about') },
-    { href: '/#skills', label: t('nav.skills') },
-    { href: '/#experience', label: t('nav.experience') },
-    { href: '/projects', label: t('nav.projects') },
-    { href: '/#services', label: t('nav.services') },
-    { href: '/#content', label: t('nav.content') },
-    { href: '/blog', label: t('nav.blog') },
-    { href: '/#contact', label: t('nav.contact') },
+    { href: '/#about', label: t('nav.about'), id: 'about' },
+    { href: '/#skills', label: t('nav.skills'), id: 'skills' },
+    { href: '/#experience', label: t('nav.experience'), id: 'experience' },
+    { href: '/projects', label: t('nav.projects'), id: 'projects' },
+    { href: '/#services', label: t('nav.services'), id: 'services' },
+    { href: '/#content', label: t('nav.content'), id: 'content' },
+    { href: '/blog', label: t('nav.blog'), id: 'blog' },
+    { href: '/#contact', label: t('nav.contact'), id: 'contact' },
   ];
 
   return (
@@ -47,22 +92,29 @@ export default function Navbar() {
               LK
             </div>
             <span className="font-display font-bold text-lg tracking-tight">
-              Laith Kallash
+              ليث كلش
             </span>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-white ${
-                  pathname === link.href ? 'text-[#27c6da]' : 'text-[#9aa7b8]'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.id === activeSection || pathname === link.href;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`text-sm font-medium transition-colors hover:text-white relative ${
+                    isActive ? 'text-[#27c6da]' : 'text-[#9aa7b8]'
+                  }`}
+                >
+                  {link.label}
+                  {isActive && link.id !== 'projects' && link.id !== 'blog' && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#27c6da] rounded-full" />
+                  )}
+                </a>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-4">
@@ -74,12 +126,13 @@ export default function Navbar() {
               <span>{language === 'en' ? 'EN' : 'AR'}</span>
             </button>
 
-            <Link
+            <a
               href="/#contact"
+              onClick={(e) => handleNavClick(e, '/#contact')}
               className="hidden md:inline-flex px-5 py-2.5 rounded-lg bg-[#27c6da] text-[#04101f] font-semibold text-sm transition-all hover:shadow-[0_8px_20px_rgba(39,198,218,0.25)] hover:-translate-y-0.5"
             >
               {t('nav.hire')}
-            </Link>
+            </a>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -98,25 +151,28 @@ export default function Navbar() {
           }`}
         >
           <div className="py-4 border-t border-white/10 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors hover:bg-white/5 ${
-                  pathname === link.href ? 'text-[#27c6da]' : 'text-[#9aa7b8]'
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
+            {navLinks.map((link) => {
+              const isActive = link.id === activeSection || pathname === link.href;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors hover:bg-white/5 ${
+                    isActive ? 'text-[#27c6da]' : 'text-[#9aa7b8]'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+            <a
               href="/#contact"
+              onClick={(e) => handleNavClick(e, '/#contact')}
               className="block px-4 py-3 mt-2 rounded-lg bg-[#27c6da] text-[#04101f] font-semibold text-center"
-              onClick={() => setIsOpen(false)}
             >
               {t('nav.hire')}
-            </Link>
+            </a>
           </div>
         </div>
       </div>
