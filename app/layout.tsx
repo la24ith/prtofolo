@@ -1,4 +1,3 @@
-@"
 import type { Metadata } from 'next';
 import { Inter, Cairo, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
@@ -28,4 +27,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-"@ | Set-Content app\layout.tsx -Encoding UTF8
