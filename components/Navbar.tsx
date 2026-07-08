@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Menu, X, Globe } from 'lucide-react';
-
+import { useRouter } from 'next/navigation';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -43,30 +43,26 @@ export default function Navbar() {
     setLanguage(language === 'en' ? 'ar' : 'en');
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    
-    // إغلاق القائمة في الموبايل
-    setIsOpen(false);
-    
-    if (href.startsWith('/#')) {
-      const sectionId = href.replace('/#', '');
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const offset = 80; // ارتفاع النافبار
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    } else {
-      // للروابط العادية مثل /projects و /blog
+const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  e.preventDefault();
+  setIsOpen(false);
+
+  if (href.startsWith('/#')) {
+    if (pathname !== '/') {
       window.location.href = href;
+      return;
     }
-  };
+    const sectionId = href.replace('/#', '');
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80;
+      const offsetPosition = element.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+  } else {
+    router.push(href);
+  }
+};
 
   const navLinks = [
     { href: '/#about', label: t('nav.about'), id: 'about' },
