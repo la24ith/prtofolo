@@ -21,7 +21,7 @@ export default function Contact() {
     { icon: Mail, label: t('contact.email'), value: 'la24ithdev@gmail.com', href: 'mailto:la24ithdev@gmail.com' },
     { icon: Linkedin, label: t('contact.linkedin'), value: 'LinkedIn', href: 'https://www.linkedin.com/in/laith-kalash-3635b5254' },
     { icon: Github, label: t('contact.github'), value: 'GitHub', href: 'https://github.com/laithkallash' },
-    { icon: Instagram, label: t('contact.instagram'), value: '@flutterwithlaith', href: 'https://www.instagram.com/flutterwithlaith' },
+    { icon: Instagram, label: t('contact.instagram'), value: '@la24ith', href: 'https://www.instagram.com/la24ith' },
   ];
 
   return (
