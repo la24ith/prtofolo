@@ -21,68 +21,9 @@ interface Project {
 }
 
 const projects: Project[] = [
+ 
   {
     id: 1,
-    title: 'E-Commerce Flutter App',
-    description: 'Full-featured e-commerce application with real-time inventory, payment integration, and AI-powered recommendations.',
-    category: 'E-Commerce',
-    tech: ['Flutter', 'Firebase', 'Stripe', 'BLoC'],
-    architecture: 'Clean Architecture',
-    demo: '#',
-    github: '#',
-  },
-  {
-    id: 2,
-    title: 'Health & Fitness Tracker',
-    description: 'Cross-platform health tracking app with wearable integration, workout plans, and nutrition tracking.',
-    category: 'Health',
-    tech: ['Flutter', 'Riverpod', 'Hive', 'WebSocket'],
-    architecture: 'Feature-first',
-    demo: '#',
-    github: '#',
-  },
-  {
-    id: 3,
-    title: 'Real Estate Marketplace',
-    description: 'Property listing platform with AR virtual tours, mortgage calculator, and AI property valuation.',
-    category: 'Real Estate',
-    tech: ['Flutter', 'Supabase', 'MapBox', 'GetX'],
-    architecture: 'Modular',
-    demo: '#',
-    github: '#',
-  },
-  {
-    id: 4,
-    title: 'Food Delivery App',
-    description: 'On-demand food delivery with real-time tracking, restaurant management, and smart routing.',
-    category: 'Food',
-    tech: ['Flutter', 'Firebase', 'Google Maps', 'Provider'],
-    architecture: 'Clean Architecture',
-    demo: '#',
-    github: '#',
-  },
-  {
-    id: 5,
-    title: 'Finance Management Dashboard',
-    description: 'Personal finance app with AI insights, budgeting, expense tracking, and investment portfolio.',
-    category: 'Finance',
-    tech: ['Flutter', 'MongoDB', 'Riverpod', 'Charts'],
-    architecture: 'MVVM',
-    demo: '#',
-    github: '#',
-  },
-  {
-    id: 6,
-    title: 'Social Media Platform',
-    description: 'Feature-rich social media app with live streaming, stories, chat, and content moderation.',
-    category: 'Social',
-    tech: ['Flutter', 'Firebase', 'WebRTC', 'BLoC'],
-    architecture: 'Clean Architecture',
-    demo: '#',
-    github: '#',
-  },
-  {
-    id: 7,
     title: 'لوحة تحكم نظام صحي',
     description: 'لوحة تحكم شاملة لإدارة البرامج الصحية والمستخدمين مع طباعة تقارير مفصلة.',
     category: 'Health',
@@ -92,10 +33,12 @@ const projects: Project[] = [
     github: '#',
     coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
     screenshots: [
+      
+      'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_4_2026-07-08_11-42-29_xaroyd.jpg',
+
       'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_7_2026-07-08_11-42-29_rtjpbd.jpg',
      ' https://res.cloudinary.com/olhrhert/image/upload/v1783500199/photo_2_2026-07-08_11-42-29_putqys.jpg',
      ' https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_3_2026-07-08_11-42-29_dsngj7.jpg',
-'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_4_2026-07-08_11-42-29_xaroyd.jpg',
 'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_5_2026-07-08_11-42-29_tq9kyd.jpg',
 'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_6_2026-07-08_11-42-29_srlujf.jpg',
 'https://res.cloudinary.com/olhrhert/image/upload/v1783500201/photo_8_2026-07-08_11-42-29_pucves.jpg',
