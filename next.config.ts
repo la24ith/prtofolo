@@ -5,9 +5,6 @@ const nextConfig: NextConfig = {
     domains: ['github.com'],
     formats: ['image/avif', 'image/webp'],
   },
-  experimental: {
-    optimizeCss: true,
-  },
 };
 
 export default nextConfig;
