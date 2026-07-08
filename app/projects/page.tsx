@@ -80,6 +80,26 @@ export default function ProjectsPage() {
       demo: '#',
       github: '#',
       image: '/projects/social.jpg',
+    },  {
+      id: 7,
+      title: 'لوحة تحكم لتطبيق نظام صحي',
+      description: 'لوحة تحكم شاملة لاضافة برامج صحية ومستخدمين وطباعة تقارير مفصلة.',
+      category: 'الصحة والخصوصية',
+      tech: ['Flutter', 'laravel', 'WebRTC', 'BLoC'],
+      architecture: 'Clean Architecture',
+      demo: '#',
+      github: '#',
+      image: '/projects/social.jpg',
+       coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
+  screenshots: [
+    'https://res.cloudinary.com/olhrhert/image/upload/v1783500201/photo_12_2026-07-08_11-42-29_xuo6lc.jpg',
+    'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_4_2026-07-08_11-42-29_xaroyd.jpg',
+    // ... باقي الصور
+  ],
+  highlights: [
+    'ميزة 1',
+    'ميزة 2',
+  ],
     },
   ];
 
