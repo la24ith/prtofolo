@@ -11,6 +11,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const router = useRouter();
   const { language, setLanguage, t, dir } = useLanguage();
   const pathname = usePathname();
 
