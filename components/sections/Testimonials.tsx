@@ -10,28 +10,28 @@ export default function Testimonials() {
 
   const testimonials = [
     {
-      name: 'Ahmed Al-Hassan',
-      role: 'CTO at TechVentures',
+      name: 'علي الشيخ',
+      role: 'مدير مشروع',
       company: 'TechVentures',
       image: 'AH',
       rating: 5,
-      review: 'Laith is an exceptional Flutter developer. His expertise in Clean Architecture and state management transformed our app development process. Highly recommended!',
+      review: 'كل مرحلة بالمشروع كانت واضحة، وكان يعطينا تحديثات بشكل مستمر. هيك بيكون التعامل الاحترافي',
     },
     {
-      name: 'Sarah Al-Khatib',
-      role: 'Product Manager',
+      name: 'سارة',
+      role: 'مدير مشروع',
       company: 'InnovateX',
       image: 'SK',
       rating: 5,
-      review: 'Working with Laith was a game-changer. His attention to detail, performance optimization skills, and Flutter expertise delivered a product that exceeded our expectations.',
+      review: 'ساعدنا نحول فكرتنا لتطبيق جاهز للاستخدام باحترافية عالية. النتيجة كانت أكثر من ممتازة..',
     },
     {
-      name: 'Mohammed Hassan',
-      role: 'CEO',
-      company: 'AppWorks',
+      name: 'محمد الحسن',
+      role: 'مدير مشروع',
+      company: '..',
       image: 'MH',
       rating: 5,
-      review: 'Laith brought our vision to life with his Flutter expertise. His ability to translate complex requirements into a beautiful, high-performance app is remarkable.',
+      review: 'أكتر شي ميّزه إنه ما بيكتفي بتنفيذ الطلب، بيقترح حلول بتخلي المنتج يطلع بأفضل صورة ممكنة.',
     },
   ];
 
