@@ -28,7 +28,7 @@ export default function Testimonials() {
     {
       name: 'محمد الحسن',
       role: 'مدير مشروع',
-      company: '..',
+      company: '....',
       image: 'MH',
       rating: 5,
       review: 'أكتر شي ميّزه إنه ما بيكتفي بتنفيذ الطلب، بيقترح حلول بتخلي المنتج يطلع بأفضل صورة ممكنة.',
