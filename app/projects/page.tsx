@@ -89,8 +89,8 @@ export default function ProjectsPage() {
       architecture: 'Clean Architecture',
       demo: '#',
       github: '#',
-      image: '/projects/social.jpg',
-       coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
+      image: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jp',
+     
   screenshots: [
     'https://res.cloudinary.com/olhrhert/image/upload/v1783500201/photo_12_2026-07-08_11-42-29_xuo6lc.jpg',
     'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_4_2026-07-08_11-42-29_xaroyd.jpg',
