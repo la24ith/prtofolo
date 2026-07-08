@@ -89,7 +89,7 @@ export default function ProjectsPage() {
       architecture: 'Clean Architecture',
       demo: '#',
       github: '#',
-      image: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jp',
+      image: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
      
   screenshots: [
     'https://res.cloudinary.com/olhrhert/image/upload/v1783500201/photo_12_2026-07-08_11-42-29_xuo6lc.jpg',
