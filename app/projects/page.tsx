@@ -1,10 +1,10 @@
-// app/projects/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ExternalLink, Github, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { Search, ExternalLink, Github, X, ChevronLeft, ChevronRight, Code2, Layers } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -16,7 +16,6 @@ interface Project {
   demo: string;
   github: string;
   coverImage?: string;
-  image?: string;
   screenshots?: string[];
   highlights?: string[];
 }
@@ -84,137 +83,214 @@ const projects: Project[] = [
   },
   {
     id: 7,
-    title: 'لوحة تحكم لتطبيق نظام صحي',
-    description: 'لوحة تحكم شاملة لاضافة برامج صحية ومستخدمين وطباعة تقارير مفصلة.',
+    title: 'لوحة تحكم نظام صحي',
+    description: 'لوحة تحكم شاملة لإدارة البرامج الصحية والمستخدمين مع طباعة تقارير مفصلة.',
     category: 'Health',
-    tech: ['Flutter', 'Laravel', 'BLoC'],
+    tech: ['Flutter', 'Laravel', 'BLoC', 'REST API'],
     architecture: 'Clean Architecture',
     demo: '#',
     github: '#',
     coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
     screenshots: [
+      'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
       'https://res.cloudinary.com/olhrhert/image/upload/v1783500201/photo_12_2026-07-08_11-42-29_xuo6lc.jpg',
       'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_4_2026-07-08_11-42-29_xaroyd.jpg',
     ],
     highlights: [
       'إدارة المستخدمين والبرامج الصحية',
       'طباعة تقارير مفصلة',
+      'لوحة إحصائيات متقدمة',
+      'نظام صلاحيات متعدد المستويات',
     ],
   },
 ];
 
 const categories = ['all', 'E-Commerce', 'Health', 'Real Estate', 'Food', 'Finance', 'Social'];
 
-function PlaceholderThumbnail({ category }: { category: string }) {
-  return (
-    <div className="h-48 bg-gradient-to-br from-[#0468d7]/20 to-[#7c5cfc]/20 relative overflow-hidden flex items-center justify-center">
-      <div className="w-20 h-32 rounded-xl bg-[#0a0e14]/80 border border-white/10 backdrop-blur-sm p-2 transform translate-y-4">
-        <div className="h-1.5 w-8 bg-white/20 rounded-full mb-2" />
-        <div className="h-1.5 w-5 bg-white/20 rounded-full mb-2" />
-        <div className="flex-1 bg-white/10 rounded-lg mt-3" />
-      </div>
-      <span className="absolute top-3 right-3 px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-white">
-        {category}
-      </span>
-    </div>
-  );
-}
-
+// ─── Modal ────────────────────────────────────────────────────────────────────
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
-  const [imgIdx, setImgIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(0);
   const shots = project.screenshots ?? [];
+
+  const prev = useCallback(() => setActiveIdx(i => (i - 1 + shots.length) % shots.length), [shots.length]);
+  const next = useCallback(() => setActiveIdx(i => (i + 1) % shots.length), [shots.length]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [onClose, prev, next]);
 
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 z-50 flex items-center justify-center"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       >
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
+        {/* Backdrop */}
         <motion.div
-          className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[#080d15] border border-white/10 shadow-2xl"
-          initial={{ scale: 0.95, opacity: 0, y: 20 }}
+          className="absolute inset-0 bg-black/80 backdrop-blur-md"
+          onClick={onClose}
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        />
+
+        {/* Panel */}
+        <motion.div
+          className="relative z-10 w-full max-w-5xl mx-4 max-h-[92vh] flex flex-col lg:flex-row rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+          initial={{ scale: 0.92, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.95, opacity: 0, y: 20 }}
-          transition={{ type: 'spring', duration: 0.4 }}
+          exit={{ scale: 0.92, opacity: 0, y: 30 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          style={{ background: 'linear-gradient(135deg, #0d1520 0%, #0a0e14 100%)' }}
         >
-          <button onClick={onClose} className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
-            <X className="w-5 h-5 text-white" />
+          {/* Close */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all backdrop-blur-sm border border-white/10"
+          >
+            <X className="w-4 h-4 text-white" />
           </button>
 
+          {/* Left — Gallery */}
           {shots.length > 0 && (
-            <div className="relative bg-[#060b13] rounded-t-2xl overflow-hidden">
-              <div className="h-72 md:h-96 flex items-center justify-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={shots[imgIdx]} alt={`screenshot ${imgIdx + 1}`} className="h-full w-full object-contain" />
+            <div className="lg:w-[55%] relative bg-[#060b13] flex-shrink-0">
+              {/* Main image */}
+              <div className="relative h-72 lg:h-full min-h-[300px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeIdx}
+                    className="absolute inset-0"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <Image
+                      src={shots[activeIdx]}
+                      alt={`${project.title} - ${activeIdx + 1}`}
+                      fill
+                      className="object-contain p-2"
+                      sizes="(max-width: 1024px) 100vw, 55vw"
+                      unoptimized
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Gradient overlay bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#060b13] to-transparent pointer-events-none" />
+
+                {/* Nav arrows */}
+                {shots.length > 1 && (
+                  <>
+                    <button onClick={prev}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center transition-all border border-white/10 backdrop-blur-sm">
+                      <ChevronLeft className="w-4 h-4 text-white" />
+                    </button>
+                    <button onClick={next}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center transition-all border border-white/10 backdrop-blur-sm">
+                      <ChevronRight className="w-4 h-4 text-white" />
+                    </button>
+                  </>
+                )}
               </div>
+
+              {/* Thumbnails */}
               {shots.length > 1 && (
-                <>
-                  <button onClick={() => setImgIdx((i) => (i - 1 + shots.length) % shots.length)}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70">
-                    <ChevronLeft className="w-5 h-5 text-white" />
-                  </button>
-                  <button onClick={() => setImgIdx((i) => (i + 1) % shots.length)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70">
-                    <ChevronRight className="w-5 h-5 text-white" />
-                  </button>
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-                    {shots.map((_, i) => (
-                      <button key={i} onClick={() => setImgIdx(i)}
-                        className={`h-2 rounded-full transition-all ${i === imgIdx ? 'bg-[#27c6da] w-4' : 'bg-white/30 w-2'}`} />
-                    ))}
-                  </div>
-                </>
+                <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 px-4">
+                  {shots.map((src, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveIdx(i)}
+                      className={`relative w-12 h-12 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                        i === activeIdx ? 'border-[#27c6da] scale-110' : 'border-white/20 opacity-60 hover:opacity-100'
+                      }`}
+                    >
+                      <Image src={src} alt={`thumb ${i + 1}`} fill className="object-cover" unoptimized />
+                    </button>
+                  ))}
+                </div>
               )}
+
+              {/* Counter */}
+              <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-xs font-mono text-white">
+                {activeIdx + 1} / {shots.length}
+              </div>
             </div>
           )}
 
-          <div className="p-6 md:p-8">
-            <div className="flex items-start justify-between mb-4 gap-4">
-              <div>
-                <span className="px-2 py-1 rounded-full bg-[#27c6da]/10 border border-[#27c6da]/30 text-[#27c6da] text-xs font-mono mb-2 inline-block">
-                  {project.category}
-                </span>
-                <h2 className="font-display text-2xl font-bold text-white">{project.title}</h2>
-              </div>
-              <div className="flex gap-3 shrink-0 mt-1">
-                <a href={project.github} className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[#9aa7b8] hover:text-[#27c6da] transition-all">
-                  <Github className="w-4 h-4" />
-                </a>
-                <a href={project.demo} className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[#9aa7b8] hover:text-[#27c6da] transition-all">
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
+          {/* Right — Info */}
+          <div className="flex-1 overflow-y-auto p-6 lg:p-8 flex flex-col gap-5">
+            {/* Header */}
+            <div>
+              <span className="inline-block px-3 py-1 rounded-full bg-[#27c6da]/10 border border-[#27c6da]/30 text-[#27c6da] text-xs font-mono mb-3">
+                {project.category}
+              </span>
+              <h2 className="font-display text-2xl lg:text-3xl font-bold text-white leading-tight">
+                {project.title}
+              </h2>
+              <p className="text-[#9aa7b8] text-sm leading-relaxed mt-2">{project.description}</p>
             </div>
 
-            <p className="text-[#9aa7b8] leading-relaxed mb-6">{project.description}</p>
-
+            {/* Highlights */}
             {project.highlights && project.highlights.length > 0 && (
-              <div className="mb-6">
-                <h3 className="text-sm font-semibold text-white/60 uppercase tracking-widest mb-3">المميزات الرئيسية</h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <div>
+                <p className="text-[10px] font-mono text-[#5f6b7d] uppercase tracking-widest mb-3">المميزات</p>
+                <div className="grid grid-cols-1 gap-2">
                   {project.highlights.map((h, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-[#9aa7b8]">
-                      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-[#27c6da] shrink-0" />
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 * i }}
+                      className="flex items-center gap-2.5 text-sm text-[#9aa7b8]"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#27c6da] shrink-0" />
                       {h}
-                    </li>
+                    </motion.div>
                   ))}
-                </ul>
+                </div>
               </div>
             )}
 
-            <div className="mb-6">
-              <h3 className="text-sm font-semibold text-white/60 uppercase tracking-widest mb-3">Tech Stack</h3>
+            {/* Tech Stack */}
+            <div>
+              <p className="text-[10px] font-mono text-[#5f6b7d] uppercase tracking-widest mb-3 flex items-center gap-2">
+                <Code2 className="w-3 h-3" /> Tech Stack
+              </p>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((tech, idx) => (
-                  <span key={idx} className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-mono text-[#9aa7b8]">{tech}</span>
+                  <span key={idx} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-[#9aa7b8] hover:border-[#27c6da]/40 hover:text-[#27c6da] transition-colors">
+                    {tech}
+                  </span>
                 ))}
               </div>
             </div>
 
-            <div className="flex items-center gap-2 pt-4 border-t border-white/10">
+            {/* Architecture */}
+            <div className="flex items-center gap-2 py-3 border-t border-white/10">
+              <Layers className="w-3.5 h-3.5 text-[#27c6da]" />
               <span className="text-xs text-[#5f6b7d] font-mono">Architecture:</span>
               <span className="text-xs text-[#27c6da] font-mono">{project.architecture}</span>
+            </div>
+
+            {/* Actions */}
+            <div className="flex gap-3 mt-auto">
+              <a href={project.github} target="_blank" rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm font-medium text-[#9aa7b8] hover:text-white hover:border-white/30 transition-all">
+                <Github className="w-4 h-4" /> GitHub
+              </a>
+              <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#27c6da] text-[#04101f] text-sm font-semibold hover:bg-[#27c6da]/90 transition-all">
+                <ExternalLink className="w-4 h-4" /> Live Demo
+              </a>
             </div>
           </div>
         </motion.div>
@@ -223,21 +299,88 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
   );
 }
 
+// ─── Card ─────────────────────────────────────────────────────────────────────
+function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
+  const cover = project.coverImage;
+  const hasDetails = (project.screenshots?.length ?? 0) > 0 || !!project.highlights;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      onClick={hasDetails ? onClick : undefined}
+      className={`group glass rounded-xl overflow-hidden border border-white/10 hover:border-[#27c6da]/30 hover:-translate-y-2 transition-all duration-300 ${hasDetails ? 'cursor-pointer' : ''}`}
+    >
+      {/* Thumbnail */}
+      {cover ? (
+        <div className="h-52 relative overflow-hidden bg-[#060b13]">
+          <Image
+            src={cover}
+            alt={project.title}
+            fill
+            className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#060b13]/70 via-transparent to-transparent" />
+          <span className="absolute top-3 right-3 px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-white">
+            {project.category}
+          </span>
+          {hasDetails && (
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="px-5 py-2.5 rounded-xl bg-[#27c6da] text-[#04101f] text-sm font-bold shadow-lg shadow-[#27c6da]/30">
+                عرض التفاصيل ↗
+              </div>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="h-52 bg-gradient-to-br from-[#0468d7]/20 to-[#7c5cfc]/20 relative overflow-hidden flex items-center justify-center">
+          <div className="w-20 h-32 rounded-xl bg-[#0a0e14]/80 border border-white/10 backdrop-blur-sm p-2 transform translate-y-4">
+            <div className="h-1.5 w-8 bg-white/20 rounded-full mb-2" />
+            <div className="h-1.5 w-5 bg-white/20 rounded-full mb-2" />
+            <div className="flex-1 bg-white/10 rounded-lg mt-3" />
+          </div>
+          <span className="absolute top-3 right-3 px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-white">
+            {project.category}
+          </span>
+        </div>
+      )}
+
+      {/* Body */}
+      <div className="p-5">
+        <h3 className="font-display text-base font-semibold mb-1.5 group-hover:text-[#27c6da] transition-colors">{project.title}</h3>
+        <p className="text-xs text-[#9aa7b8] leading-relaxed mb-4 line-clamp-2">{project.description}</p>
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tech.map((tech, idx) => (
+            <span key={idx} className="px-2 py-0.5 rounded-md border border-white/10 text-[10px] font-mono text-[#9aa7b8]">{tech}</span>
+          ))}
+        </div>
+        <div className="flex items-center justify-between pt-3 border-t border-white/10">
+          <span className="text-[10px] text-[#5f6b7d] font-mono">{project.architecture}</span>
+          <div className="flex gap-3" onClick={e => e.stopPropagation()}>
+            <a href={project.github} className="text-[#9aa7b8] hover:text-[#27c6da] transition-colors"><Github className="w-3.5 h-3.5" /></a>
+            <a href={project.demo} className="text-[#9aa7b8] hover:text-[#27c6da] transition-colors"><ExternalLink className="w-3.5 h-3.5" /></a>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function ProjectsPage() {
   const { t } = useLanguage();
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selected, setSelected] = useState<Project | null>(null);
 
-  const filteredProjects = projects.filter((project) => {
-    const matchesSearch =
-      project.title.toLowerCase().includes(search.toLowerCase()) ||
-      project.description.toLowerCase().includes(search.toLowerCase());
-    const matchesCategory = category === 'all' || project.category === category;
-    return matchesSearch && matchesCategory;
+  const filtered = projects.filter(p => {
+    const s = search.toLowerCase();
+    const matchSearch = p.title.toLowerCase().includes(s) || p.description.toLowerCase().includes(s);
+    const matchCat = category === 'all' || p.category === category;
+    return matchSearch && matchCat;
   });
-
-  const getCover = (p: Project) => p.coverImage ?? p.image ?? null;
 
   return (
     <>
@@ -248,16 +391,17 @@ export default function ProjectsPage() {
             <p className="text-[#9aa7b8] text-lg mt-4">{t('projects.subtitle')}</p>
           </motion.div>
 
+          {/* Filters */}
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5f6b7d]" />
               <input type="text" placeholder="Search projects..." value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={e => setSearch(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-[#5f6b7d] focus:border-[#27c6da] focus:outline-none transition-colors"
               />
             </div>
             <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
-              {categories.map((cat) => (
+              {categories.map(cat => (
                 <button key={cat} onClick={() => setCategory(cat)}
                   className={`px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap transition-all duration-300 ${
                     category === cat ? 'bg-[#27c6da] text-[#04101f]' : 'bg-white/5 border border-white/10 text-[#9aa7b8] hover:bg-white/10'
@@ -268,66 +412,26 @@ export default function ProjectsPage() {
             </div>
           </div>
 
+          {/* Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project, index) => {
-              const cover = getCover(project);
-              const hasScreenshots = (project.screenshots?.length ?? 0) > 0;
-              return (
-                <motion.div key={project.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 * index }}
-                  onClick={() => hasScreenshots && setSelectedProject(project)}
-                  className={`group glass rounded-xl overflow-hidden hover:border-[#27c6da]/30 hover:-translate-y-2 transition-all duration-300 ${hasScreenshots ? 'cursor-pointer' : ''}`}
-                >
-                  {cover ? (
-                    <div className="h-48 relative overflow-hidden bg-[#060b13]">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={cover} alt={project.title}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#060b13]/60 via-transparent to-transparent" />
-                      <span className="absolute top-3 right-3 px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-white">
-                        {project.category}
-                      </span>
-                      {hasScreenshots && (
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span className="px-4 py-2 rounded-xl bg-[#27c6da]/90 text-[#04101f] text-sm font-semibold">عرض التفاصيل</span>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <PlaceholderThumbnail category={project.category} />
-                  )}
-
-                  <div className="p-6">
-                    <h3 className="font-display text-lg font-semibold mb-2">{project.title}</h3>
-                    <p className="text-sm text-[#9aa7b8] leading-relaxed mb-4 line-clamp-2">{project.description}</p>
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.tech.map((tech, idx) => (
-                        <span key={idx} className="px-2 py-1 rounded-md border border-white/10 text-xs font-mono text-[#9aa7b8]">{tech}</span>
-                      ))}
-                    </div>
-                    <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                      <span className="text-xs text-[#5f6b7d] font-mono">{project.architecture}</span>
-                      <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
-                        <a href={project.github} className="text-[#9aa7b8] hover:text-[#27c6da] transition-colors"><Github className="w-4 h-4" /></a>
-                        <a href={project.demo} className="text-[#9aa7b8] hover:text-[#27c6da] transition-colors"><ExternalLink className="w-4 h-4" /></a>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {filtered.map((project, index) => (
+              <motion.div key={project.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 * index }}>
+                <ProjectCard project={project} onClick={() => setSelected(project)} />
+              </motion.div>
+            ))}
           </div>
 
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-[#9aa7b8]">No projects found matching your criteria.</p>
+          {filtered.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-[#9aa7b8]">No projects found.</p>
             </div>
           )}
         </div>
       </section>
 
-      {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
+      <AnimatePresence>
+        {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
+      </AnimatePresence>
     </>
   );
 }
