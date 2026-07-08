@@ -92,7 +92,7 @@ const projects: Project[] = [
     github: '#',
     coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
     screenshots: [
-      'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
+      'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_7_2026-07-08_11-42-29_rtjpbd.jpg',
      ' https://res.cloudinary.com/olhrhert/image/upload/v1783500199/photo_2_2026-07-08_11-42-29_putqys.jpg',
      ' https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_3_2026-07-08_11-42-29_dsngj7.jpg',
 'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_4_2026-07-08_11-42-29_xaroyd.jpg',
