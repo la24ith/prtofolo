@@ -33,20 +33,18 @@ const projects: Project[] = [
     github: '#',
     coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
     screenshots: [
-      
-      'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_4_2026-07-08_11-42-29_xaroyd.jpg',
-
-      'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_7_2026-07-08_11-42-29_rtjpbd.jpg',
-     ' https://res.cloudinary.com/olhrhert/image/upload/v1783500199/photo_2_2026-07-08_11-42-29_putqys.jpg',
-     ' https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_3_2026-07-08_11-42-29_dsngj7.jpg',
-'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_5_2026-07-08_11-42-29_tq9kyd.jpg',
-'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_6_2026-07-08_11-42-29_srlujf.jpg',
-'https://res.cloudinary.com/olhrhert/image/upload/v1783500201/photo_8_2026-07-08_11-42-29_pucves.jpg',
-'https://res.cloudinary.com/olhrhert/image/upload/v1783500201/photo_9_2026-07-08_11-42-29_i1uweh.jpg',
-'https://res.cloudinary.com/olhrhert/image/upload/v1783500200/photo_10_2026-07-08_11-42-29_eseto5.jpg',
-'https://res.cloudinary.com/olhrhert/image/upload/v1783500201/photo_11_2026-07-08_11-42-29_wbgszn.jpg',
-'https://res.cloudinary.com/olhrhert/image/upload/v1783500201/photo_12_2026-07-08_11-42-29_xuo6lc.jpg',
-
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581543/standing-iphone-mockup_s6ri1n.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581541/standing-iphone-mockup_1_stimd7.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581542/standing-iphone-mockup_2_d69dxp.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581542/standing-iphone-mockup_3_tl4srw.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581539/standing-iphone-mockup_4_a37ha9.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581536/standing-iphone-mockup_5_snshiz.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581530/standing-iphone-mockup_6_ymz6ri.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581535/standing-iphone-mockup_7_d3v8y6.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581533/standing-iphone-mockup_8_qou0tr.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581537/standing-iphone-mockup_9_vvnnus.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581531/standing-iphone-mockup_10_fl7dau.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1783581538/standing-iphone-mockup_11_gt3g30.png',
     ],
     highlights: [
       'إدارة المستخدمين والبرامج الصحية',
