@@ -20,6 +20,7 @@ interface Project {
   highlights?: string[];
 }
 
+// ─── Helpers ────────────────────────────────────────────────────────────────
 const VIDEO_EXTENSIONS = ['.mp4', '.webm', '.mov', '.m4v', '.ogv'];
 const isVideo = (url?: string) => {
   if (!url) return false;
@@ -62,7 +63,7 @@ const projects: Project[] = [
       'نظام صلاحيات متعدد المستويات',
     ],
   },
-  {
+    {
      id: 2,
     title: 'تطبيق عيادتي ',
     description: 'تطبيق لادارة اليعدة الطبية بشكل كاملة وتسهيل عملية تسجيل المرضى ودخولهم والعديد من الميزات المدهشة',
@@ -338,7 +339,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
           {coverIsVideo ? (
             <video
               src={cover}
-              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
               autoPlay
               muted
               loop
@@ -350,12 +351,11 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
               src={cover}
               alt={project.title}
               fill
-              className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              className="object-contain group-hover:scale-105 transition-transform duration-500"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               unoptimized
             />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060b13]/70 via-transparent to-transparent" />
           <span className="absolute top-3 right-3 px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-white">
             {project.category}
           </span>
