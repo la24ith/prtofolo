@@ -84,7 +84,29 @@ const projects: Project[] = [
       'طباعة ملف طبي',
       'اختصارات سريعة',
     ],
-  }
+  },
+  
+    {
+     id: 3,
+    title: 'تطبيق متعة التغير ',
+    description: 'تطبيق نظام صحي متكامل وتتبع الوزن ومراقبة النتائج واالتزام لحظة ب لحظة ',
+    category: 'Health',
+    tech: ['Flutter', 'hive', 'BLoC', 'REST API'],
+    architecture: 'Clean Architecture',
+    demo: '#',
+    github: '#',
+    coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783595785/photo_1_2026-07-08_11-51-05-removebg-preview_g3kb7j.png',
+    screenshots:[
+      'https://res.cloudinary.com/olhrhert/video/upload/v1783596311/AQNXTg8diwHX4qDIM8nA753CyP0uPfQkz4Tq2h_3S9E4n7p1OGLPDKjNr5TagQG_z379sv.mp4'
+    ],
+    highlights:[
+      ' متابعة الوزن',
+      'انظمة صحية مناسبة',
+      'تخزين حي',
+      'متابعة الالتزام',
+    ],
+  },
+  
 ];
 
 const categories = ['all', 'E-Commerce', 'Health', 'Real Estate', 'Food', 'Finance', 'Social'];
