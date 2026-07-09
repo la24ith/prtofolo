@@ -20,7 +20,6 @@ interface Project {
   highlights?: string[];
 }
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
 const VIDEO_EXTENSIONS = ['.mp4', '.webm', '.mov', '.m4v', '.ogv'];
 const isVideo = (url?: string) => {
   if (!url) return false;
