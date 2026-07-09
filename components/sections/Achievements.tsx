@@ -9,7 +9,30 @@ export default function Achievements() {
   const { t } = useLanguage();
 
   const achievements = [
+   
     {
+      icon: Code2,
+      title: t('achievements.octo'),
+      subtitle: 'Building cross-platform Flutter applications',
+      date: '2026 - Present',
+      color: 'from-[#27c6da] to-[#7c5cfc]',
+    },
+    {
+      icon: Shield,
+      title: t('achievements.qa'),
+      subtitle: 'Quality assurance and testing engineering',
+      date: '2026 - present',
+      color: 'from-[#7c5cfc] to-[#0468d7]',
+    },
+    {
+      icon: Server,
+      title: t('achievements.it'),
+      subtitle: 'IT support and infrastructure management',
+      date: '2025 - 2026',
+      color: 'from-[#f59e0b] to-[#0468d7]',
+    },
+    
+     {
       icon: GraduationCap,
       title: t('achievements.education'),
       subtitle: t('achievements.university'),
@@ -18,31 +41,10 @@ export default function Achievements() {
     },
     {
       icon: Code2,
-      title: t('achievements.octo'),
+      title: 'freelance',
       subtitle: 'Building cross-platform Flutter applications',
-      date: '2023 - Present',
+      date: '20222 - Present',
       color: 'from-[#27c6da] to-[#7c5cfc]',
-    },
-    {
-      icon: Shield,
-      title: t('achievements.qa'),
-      subtitle: 'Quality assurance and testing engineering',
-      date: '2022 - 2023',
-      color: 'from-[#7c5cfc] to-[#0468d7]',
-    },
-    {
-      icon: Server,
-      title: t('achievements.it'),
-      subtitle: 'IT support and infrastructure management',
-      date: '2021 - 2022',
-      color: 'from-[#f59e0b] to-[#0468d7]',
-    },
-    {
-      icon: Video,
-      title: t('achievements.content'),
-      subtitle: 'Creating Flutter educational content',
-      date: '2023 - Present',
-      color: 'from-[#0468d7] to-[#7c5cfc]',
     },
   ];
 
