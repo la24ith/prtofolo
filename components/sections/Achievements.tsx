@@ -43,7 +43,7 @@ export default function Achievements() {
       icon: Code2,
       title: 'freelance',
       subtitle: 'Building cross-platform Flutter applications',
-      date: '20222 - Present',
+      date: '2022 - Present',
       color: 'from-[#27c6da] to-[#7c5cfc]',
     },
   ];
