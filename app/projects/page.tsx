@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { Search, ExternalLink, Github, X, ChevronLeft, ChevronRight, Code2, Layers } from 'lucide-react';
+import { Search, ExternalLink, Github, X, ChevronLeft, ChevronRight, Code2, Layers, Play } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -15,13 +15,21 @@ interface Project {
   architecture: string;
   demo: string;
   github: string;
-  coverImage?: string;
-  screenshots?: string[];
+  coverImage?: string; // يقبل رابط صورة أو رابط فيديو (mp4/webm/mov...) - يتم التعرف عليه تلقائياً
+  screenshots?: string[]; // نفس الفكرة، تقدر تخلط صور وفيديوهات بنفس المصفوفة
   highlights?: string[];
 }
 
+// ─── Helpers ────────────────────────────────────────────────────────────────
+const VIDEO_EXTENSIONS = ['.mp4', '.webm', '.mov', '.m4v', '.ogv'];
+const isVideo = (url?: string) => {
+  if (!url) return false;
+  const clean = url.split('?')[0].toLowerCase();
+  return VIDEO_EXTENSIONS.some(ext => clean.endsWith(ext));
+};
+
 const projects: Project[] = [
- 
+
   {
     id: 1,
     title: 'لوحة تحكم نظام صحي',
@@ -45,6 +53,8 @@ const projects: Project[] = [
 'https://res.cloudinary.com/olhrhert/image/upload/v1783581537/standing-iphone-mockup_9_vvnnus.png',
 'https://res.cloudinary.com/olhrhert/image/upload/v1783581531/standing-iphone-mockup_10_fl7dau.png',
 'https://res.cloudinary.com/olhrhert/image/upload/v1783581538/standing-iphone-mockup_11_gt3g30.png',
+      // مثال: تحط رابط فيديو هنا وبيشتغل تلقائي كفيديو
+      // 'https://res.cloudinary.com/olhrhert/video/upload/v.../demo_clip.mp4',
     ],
     highlights: [
       'إدارة المستخدمين والبرامج الصحية',
@@ -53,14 +63,62 @@ const projects: Project[] = [
       'نظام صلاحيات متعدد المستويات',
     ],
   },
+  {
+     id: 2,
+    title: 'تطبيق عيادتي ',
+    description: 'تطبيق لادارة اليعدة الطبية بشكل كاملة وتسهيل عملية تسجيل المرضى ودخولهم والعديد من الميزات المدهشة',
+    category: 'Health',
+    tech: ['Flutter', 'sql', 'BLoC', 'REST API'],
+    architecture: 'Clean Architecture',
+    demo: '#',
+    github: '#',
+    coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783594167/logo_mu_clinc_t74jo1.png',
+    screenshots:[
+      'https://res.cloudinary.com/olhrhert/video/upload/v1783593573/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82_%D8%B9%D9%8A%D8%A7%D8%AF%D8%AA%D9%8A_kwxd7j.mp4'
+    ].
+    highlights:[
+      'اضافة مرضى',
+      'تسجيل مواعيد',
+      'ملف طبي شامل',
+      'قائمة انتظار ذكية',
+      'طباعة ملف طبي',
+      'اختصارات سريعة',
+    ],
+  }
 ];
 
 const categories = ['all', 'E-Commerce', 'Health', 'Real Estate', 'Food', 'Finance', 'Social'];
+
+// ─── Media (صورة أو فيديو) ─────────────────────────────────────────────────
+function MediaThumb({ src, alt, className, active }: { src: string; alt: string; className?: string; active?: boolean }) {
+  if (isVideo(src)) {
+    return (
+      <div className={`relative ${className ?? ''}`}>
+        <video
+          src={src}
+          className="w-full h-full object-cover"
+          muted
+          playsInline
+          preload="metadata"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+          <Play className={`text-white drop-shadow ${active ? 'w-4 h-4' : 'w-3 h-3'}`} fill="white" />
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className={`relative ${className ?? ''}`}>
+      <Image src={src} alt={alt} fill className="object-cover" unoptimized />
+    </div>
+  );
+}
 
 // ─── Modal ────────────────────────────────────────────────────────────────────
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const shots = project.screenshots ?? [];
+  const activeSrc = shots[activeIdx];
 
   const prev = useCallback(() => setActiveIdx(i => (i - 1 + shots.length) % shots.length), [shots.length]);
   const next = useCallback(() => setActiveIdx(i => (i + 1) % shots.length), [shots.length]);
@@ -112,7 +170,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           {/* Left — Gallery */}
           {shots.length > 0 && (
             <div className="lg:w-[55%] relative bg-[#060b13] flex-shrink-0">
-              {/* Main image */}
+              {/* Main media */}
               <div className="relative h-72 lg:h-full min-h-[300px]">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -123,14 +181,27 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.25 }}
                   >
-                    <Image
-                      src={shots[activeIdx]}
-                      alt={`${project.title} - ${activeIdx + 1}`}
-                      fill
-                      className="object-contain p-2"
-                      sizes="(max-width: 1024px) 100vw, 55vw"
-                      unoptimized
-                    />
+                    {isVideo(activeSrc) ? (
+                      <video
+                        key={activeSrc}
+                        src={activeSrc}
+                        className="w-full h-full object-contain p-2"
+                        controls
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                    ) : (
+                      <Image
+                        src={activeSrc}
+                        alt={`${project.title} - ${activeIdx + 1}`}
+                        fill
+                        className="object-contain p-2"
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                        unoptimized
+                      />
+                    )}
                   </motion.div>
                 </AnimatePresence>
 
@@ -154,7 +225,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 
               {/* Thumbnails */}
               {shots.length > 1 && (
-                <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 px-4">
+                <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 px-4 overflow-x-auto">
                   {shots.map((src, i) => (
                     <button
                       key={i}
@@ -163,7 +234,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                         i === activeIdx ? 'border-[#27c6da] scale-110' : 'border-white/20 opacity-60 hover:opacity-100'
                       }`}
                     >
-                      <Image src={src} alt={`thumb ${i + 1}`} fill className="object-cover" unoptimized />
+                      <MediaThumb src={src} alt={`thumb ${i + 1}`} className="w-full h-full" active={i === activeIdx} />
                     </button>
                   ))}
                 </div>
@@ -252,6 +323,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 // ─── Card ─────────────────────────────────────────────────────────────────────
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   const cover = project.coverImage;
+  const coverIsVideo = isVideo(cover);
   const hasDetails = (project.screenshots?.length ?? 0) > 0 || !!project.highlights;
 
   return (
@@ -264,18 +336,35 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       {/* Thumbnail */}
       {cover ? (
         <div className="h-52 relative overflow-hidden bg-[#060b13]">
-          <Image
-            src={cover}
-            alt={project.title}
-            fill
-            className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            unoptimized
-          />
+          {coverIsVideo ? (
+            <video
+              src={cover}
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            />
+          ) : (
+            <Image
+              src={cover}
+              alt={project.title}
+              fill
+              className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              unoptimized
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-[#060b13]/70 via-transparent to-transparent" />
           <span className="absolute top-3 right-3 px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-white">
             {project.category}
           </span>
+          {coverIsVideo && (
+            <span className="absolute top-3 left-3 w-6 h-6 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 flex items-center justify-center">
+              <Play className="w-3 h-3 text-white" fill="white" />
+            </span>
+          )}
           {hasDetails && (
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="px-5 py-2.5 rounded-xl bg-[#27c6da] text-[#04101f] text-sm font-bold shadow-lg shadow-[#27c6da]/30">
