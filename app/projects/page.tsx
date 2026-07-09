@@ -39,7 +39,7 @@ const projects: Project[] = [
     architecture: 'Clean Architecture',
     demo: '#',
     github: '#',
-    coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
+    coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783605586/%D9%84%D9%88%D8%BA%D9%88_%D9%84%D9%88%D8%AD%D8%A9_%D8%A7%D9%84%D8%AA%D8%AD%D9%83%D9%85_rkcky6.png',
     screenshots: [
 'https://res.cloudinary.com/olhrhert/image/upload/v1783581543/standing-iphone-mockup_s6ri1n.png',
 'https://res.cloudinary.com/olhrhert/image/upload/v1783581541/standing-iphone-mockup_1_stimd7.png',
