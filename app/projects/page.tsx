@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, SyntheticEvent } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -39,7 +39,7 @@ const projects: Project[] = [
     architecture: 'Clean Architecture',
     demo: '#',
     github: '#',
-    coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783595785/photo_1_2026-07-08_11-51-05-removebg-preview_g3kb7j.png',
+    coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783500674/photo_1_2026-07-08_11-51-05_woegtu.jpg',
     screenshots: [
 'https://res.cloudinary.com/olhrhert/image/upload/v1783581543/standing-iphone-mockup_s6ri1n.png',
 'https://res.cloudinary.com/olhrhert/image/upload/v1783581541/standing-iphone-mockup_1_stimd7.png',
@@ -63,50 +63,6 @@ const projects: Project[] = [
       'نظام صلاحيات متعدد المستويات',
     ],
   },
-    {
-     id: 2,
-    title: 'تطبيق عيادتي ',
-    description: 'تطبيق لادارة اليعدة الطبية بشكل كاملة وتسهيل عملية تسجيل المرضى ودخولهم والعديد من الميزات المدهشة',
-    category: 'Health',
-    tech: ['Flutter', 'sql', 'BLoC', 'REST API'],
-    architecture: 'Clean Architecture',
-    demo: '#',
-    github: '#',
-    coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783594167/logo_mu_clinc_t74jo1.png',
-    screenshots:[
-      'https://res.cloudinary.com/olhrhert/video/upload/v1783593573/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82_%D8%B9%D9%8A%D8%A7%D8%AF%D8%AA%D9%8A_kwxd7j.mp4'
-    ],
-    highlights:[
-      'اضافة مرضى',
-      'تسجيل مواعيد',
-      'ملف طبي شامل',
-      'قائمة انتظار ذكية',
-      'طباعة ملف طبي',
-      'اختصارات سريعة',
-    ],
-  },
-  
-    {
-     id: 3,
-    title: 'تطبيق متعة التغير ',
-    description: 'تطبيق نظام صحي متكامل وتتبع الوزن ومراقبة النتائج واالتزام لحظة ب لحظة ',
-    category: 'Health',
-    tech: ['Flutter', 'hive', 'BLoC', 'REST API'],
-    architecture: 'Clean Architecture',
-    demo: '#',
-    github: '#',
-    coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783595785/photo_1_2026-07-08_11-51-05-removebg-preview_g3kb7j.png',
-    screenshots:[
-      'https://res.cloudinary.com/olhrhert/video/upload/v1783596311/AQNXTg8diwHX4qDIM8nA753CyP0uPfQkz4Tq2h_3S9E4n7p1OGLPDKjNr5TagQG_z379sv.mp4'
-    ],
-    highlights:[
-      ' متابعة الوزن',
-      'انظمة صحية مناسبة',
-      'تخزين حي',
-      'متابعة الالتزام',
-    ],
-  },
-  
 ];
 
 const categories = ['all', 'E-Commerce', 'Health', 'Real Estate', 'Food', 'Finance', 'Social'];
@@ -348,6 +304,15 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
   const coverIsVideo = isVideo(cover);
   const hasDetails = (project.screenshots?.length ?? 0) > 0 || !!project.highlights;
 
+  // نكتشف أبعاد الفيديو الحقيقية (عرضي أو طولي زي الريلز) عشان نضبط الحاوية بدون قص أو أشرطة سوداء
+  const [videoRatio, setVideoRatio] = useState<number | null>(null);
+  const isPortraitVideo = coverIsVideo && videoRatio !== null && videoRatio < 1;
+
+  const handleLoadedMetadata = (e: SyntheticEvent<HTMLVideoElement>) => {
+    const { videoWidth, videoHeight } = e.currentTarget;
+    if (videoWidth && videoHeight) setVideoRatio(videoWidth / videoHeight);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -357,16 +322,20 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
     >
       {/* Thumbnail */}
       {cover ? (
-        <div className="h-52 relative overflow-hidden bg-[#060b13]">
+        <div
+          className={`relative overflow-hidden bg-[#060b13] mx-auto ${isPortraitVideo ? 'w-full max-h-[420px]' : 'h-52 w-full'}`}
+          style={isPortraitVideo ? { aspectRatio: videoRatio as number } : undefined}
+        >
           {coverIsVideo ? (
             <video
               src={cover}
-              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+              className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${isPortraitVideo ? 'object-cover' : 'object-contain'}`}
               autoPlay
               muted
               loop
               playsInline
               preload="metadata"
+              onLoadedMetadata={handleLoadedMetadata}
             />
           ) : (
             <Image
