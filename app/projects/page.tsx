@@ -74,7 +74,7 @@ const projects: Project[] = [
     coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783594167/logo_mu_clinc_t74jo1.png',
     screenshots:[
       'https://res.cloudinary.com/olhrhert/video/upload/v1783593573/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82_%D8%B9%D9%8A%D8%A7%D8%AF%D8%AA%D9%8A_kwxd7j.mp4'
-    ].
+    ],
     highlights:[
       'اضافة مرضى',
       'تسجيل مواعيد',
