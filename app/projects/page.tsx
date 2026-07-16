@@ -106,6 +106,30 @@ const projects: Project[] = [
       'متابعة الالتزام',
     ],
   },
+  {
+  id: 4,
+  title: 'تطبيق عقار',
+  description: 'تطبيق عقارات شامل لتصفح والبحث عن العقارات المتاحة للبيع والإيجار، مع خرائط تفاعلية حقيقية وتواصل مباشر مع الوكلاء العقاريين، ومزايا ذكية تسهّل على المستخدم اتخاذ قرار الشراء بثقة.',
+  category: 'Real Estate',
+  tech: ['Flutter', 'Supabase', 'PostgreSQL', 'BLoC', 'REST API'],
+  architecture: 'Clean Architecture',
+  demo: '#',
+  github: '#',
+  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1784200252/app_icon1_j39mdp.png',
+  screenshots: [
+  'https://res.cloudinary.com/olhrhert/video/upload/v1784200035/%D9%81%D9%8A%D8%AF%D9%8A%D9%88_%D8%AA%D8%B7%D8%A8%D9%8A%D9%82_%D8%B9%D9%82%D8%A7%D8%B1%D9%8A_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AE%D8%AF%D9%85_ujnumg.mp4'
+  ],
+  highlights: [
+    'بحث وفلترة متقدمة (المدينة، النوع، السعر، عدد الغرف)',
+    'خريطة تفاعلية حقيقية لموقع كل عقار',
+    'مقارنة حتى 4 عقارات جنبًا إلى جنب',
+    'تايم لاين لتاريخ تغيّر أسعار العقار',
+    'تواصل مباشر مع الوكيل (اتصال وواتساب)',
+    'مشاركة العقار كبطاقة تصميم احترافية أو رمز QR',
+    'قائمة المفضلة وحفظ العقارات المهمة',
+    'عرض آخر البيانات دون الحاجة للإنترنت (Offline-First)',
+  ],
+},
 ];
 
 const categories = ['all', 'E-Commerce', 'Health', 'Real Estate', 'Food', 'Finance', 'Social'];
