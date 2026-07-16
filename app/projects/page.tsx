@@ -135,7 +135,7 @@ const projects: Project[] = [
   title: 'لوحة تحكم عقاري',
   description: 'لوحة تحكم ويب لإدارة تطبيق عقاري بشكل كامل، تتيح للأدمن إضافة وتعديل العقارات، إدارة المستخدمين والوكلاء، متابعة الطلبات والحجوزات، وعرض إحصائيات وتقارير تفصيلية عن الأداء',
   category: 'Real Estate',
-  tech: ['React', 'Next.js', 'TypeScript', 'REST API', 'Tailwind CSS'],
+    tech: ['Flutter', 'Supabase', 'PostgreSQL', 'BLoC', 'REST API'],
   architecture: 'Clean Architecture',
   demo: '#',
   github: '#',
