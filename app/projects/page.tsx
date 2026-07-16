@@ -130,6 +130,35 @@ const projects: Project[] = [
     'عرض آخر البيانات دون الحاجة للإنترنت (Offline-First)',
   ],
 },
+  {
+  id: 5,
+  title: 'لوحة تحكم عقاري',
+  description: 'لوحة تحكم ويب لإدارة تطبيق عقاري بشكل كامل، تتيح للأدمن إضافة وتعديل العقارات، إدارة المستخدمين والوكلاء، متابعة الطلبات والحجوزات، وعرض إحصائيات وتقارير تفصيلية عن الأداء',
+  category: 'Real Estate',
+  tech: ['React', 'Next.js', 'TypeScript', 'REST API', 'Tailwind CSS'],
+  architecture: 'Clean Architecture',
+  demo: '#',
+  github: '#',
+  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1784200252/app_icon1_j39mdp.png',
+  screenshots: [
+   ' https://res.cloudinary.com/olhrhert/image/upload/v1784209502/chrome_SycMeB6i8R_n52hyq.png',
+    'https://res.cloudinary.com/olhrhert/image/upload/v1784209502/chrome_zubVdHZbfp_frhodf.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1784209502/chrome_hGsenG8Jwp_cz1rgo.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1784209502/chrome_bMHmMBXBaz_wcxcya.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1784209501/chrome_nE0Qs1CKaj_frcy91.png',
+'https://res.cloudinary.com/olhrhert/image/upload/v1784209501/chrome_Nc2xlaX5iR_jiagjm.png',
+ 'https://res.cloudinary.com/olhrhert/image/upload/v1784209501/chrome_r2Htgs08qI_asfdjk.png',
+    
+  ],
+  highlights: [
+    'إدارة العقارات (إضافة، تعديل، حذف)',
+    'إدارة المستخدمين والوكلاء العقاريين',
+    'متابعة الطلبات والحجوزات',
+    'لوحة إحصائيات ورسوم بيانية',
+    'نظام صلاحيات متعدد المستويات',
+    'بحث وفلترة متقدمة',
+  ],
+},
 ];
 
 const categories = ['all', 'E-Commerce', 'Health', 'Real Estate', 'Food', 'Finance', 'Social'];
