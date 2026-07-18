@@ -71,7 +71,7 @@ const projects: Project[] = [
     tech: ['Flutter', 'sql', 'BLoC', 'REST API'],
     architecture: 'Clean Architecture',
     demo: '#',
-    github: '#',
+    github: 'https://github.com/la24ith/clinic_app',
     coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1783594167/logo_mu_clinc_t74jo1.png',
     screenshots:[
       'https://res.cloudinary.com/olhrhert/video/upload/v1783593573/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82_%D8%B9%D9%8A%D8%A7%D8%AF%D8%AA%D9%8A_kwxd7j.mp4'
@@ -114,7 +114,7 @@ const projects: Project[] = [
   tech: ['Flutter', 'Supabase', 'PostgreSQL', 'BLoC', 'REST API'],
   architecture: 'Clean Architecture',
   demo: '#',
-  github: '#',
+  github: 'https://github.com/la24ith/akare',
   coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1784200252/app_icon1_j39mdp.png',
   screenshots: [
   'https://res.cloudinary.com/olhrhert/video/upload/v1784200035/%D9%81%D9%8A%D8%AF%D9%8A%D9%88_%D8%AA%D8%B7%D8%A8%D9%8A%D9%82_%D8%B9%D9%82%D8%A7%D8%B1%D9%8A_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AE%D8%AF%D9%85_ujnumg.mp4'
@@ -138,7 +138,7 @@ const projects: Project[] = [
     tech: ['Flutter', 'Supabase', 'PostgreSQL', 'BLoC', 'REST API'],
   architecture: 'Clean Architecture',
   demo: '#',
-  github: '#',
+  github: 'https://github.com/la24ith/admin_web_akare',
   coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1784200252/app_icon1_j39mdp.png',
   screenshots: [
    ' https://res.cloudinary.com/olhrhert/image/upload/v1784209502/chrome_SycMeB6i8R_n52hyq.png',
@@ -167,7 +167,7 @@ const projects: Project[] = [
   tech: ['Flutter', 'sql', 'BLoC', 'REST API'],
   architecture: 'Clean Architecture',
   demo: '#',
-  github: '#',
+  github: 'https://github.com/la24ith/akare',
   coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1784384344/2_beefub.png',
   screenshots: [
  'https://res.cloudinary.com/olhrhert/video/upload/v1784383457/video_2026-07-18_16-58-38_uxse6o.mp4',
