@@ -168,7 +168,7 @@ const projects: Project[] = [
   architecture: 'Clean Architecture',
   demo: '#',
   github: '#',
-  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1784383923/1_sesx2v.png',
+  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1784384344/2_beefub.png',
   screenshots: [
  'https://res.cloudinary.com/olhrhert/video/upload/v1784383457/video_2026-07-18_16-58-38_uxse6o.mp4',
    
