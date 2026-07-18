@@ -168,10 +168,10 @@ const projects: Project[] = [
   architecture: 'Clean Architecture',
   demo: '#',
   github: '#',
-  coverImage: 'رابط صورة الغلاف هنا',
+  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1784383923/1_sesx2v.png',
   screenshots: [
-    'رابط صورة/فيديو 1',
-    'رابط صورة/فيديو 2',
+ 'https://res.cloudinary.com/olhrhert/video/upload/v1784383457/video_2026-07-18_16-58-38_uxse6o.mp4',
+   
   ],
   highlights: [
     'إضافة وإدارة العقارات الخاصة بالوكيل',
