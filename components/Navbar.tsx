@@ -70,6 +70,7 @@ const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =>
     { href: '/#skills', label: t('nav.skills'), id: 'skills' },
     { href: '/#experience', label: t('nav.experience'), id: 'experience' },
     { href: '/projects', label: t('nav.projects'), id: 'projects' },
+    { href: '/features', label: t('nav.features'), id: 'features' },
     { href: '/#services', label: t('nav.services'), id: 'services' },
     { href: '/#content', label: t('nav.content'), id: 'content' },
     { href: '/blog', label: t('nav.blog'), id: 'blog' },
