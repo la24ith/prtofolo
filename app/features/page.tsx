@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   CheckCircle2,
@@ -9,6 +10,7 @@ import {
   Building2,
   Sparkles,
   ArrowLeft,
+  ArrowUpRight,
 } from 'lucide-react';
 
 // ─── بيانات مميزات التطبيقات (نسخة موجّهة للمستخدم النهائي) ─────────────────
@@ -20,6 +22,7 @@ interface AppFeatureSet {
   tagline: string;
   icon: string;
   features: { title: string; description: string }[];
+  caseStudySlug?: string;
 }
 
 const appFeatureSets: AppFeatureSet[] = [
@@ -43,6 +46,7 @@ const appFeatureSets: AppFeatureSet[] = [
     name: 'تطبيق عيادتي',
     category: 'Health',
     tagline: 'إدارة العيادة الطبية وتسجيل المرضى بكل سهولة وسرعة',
+    caseStudySlug: 'clinic-app',
     icon: 'https://res.cloudinary.com/olhrhert/image/upload/v1783594167/logo_mu_clinc_t74jo1.png',
     features: [
       { title: 'إضافة مرضى', description: 'تسجيل بيانات المريض في ثوانٍ دون تعقيد.' },
@@ -188,6 +192,15 @@ function AppSection({ app, index }: { app: AppFeatureSet; index: number }) {
             <h2 className="font-display text-xl md:text-2xl font-bold text-white">{app.name}</h2>
             <p className="text-[#9aa7b8] text-sm mt-1">{app.tagline}</p>
           </div>
+          {app.caseStudySlug && (
+            <Link
+              href={`/case-studies/${app.caseStudySlug}`}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium border border-white/15 text-white hover:border-[#27c6da]/50 hover:text-[#27c6da] transition-all shrink-0 self-start sm:self-center"
+            >
+              التفاصيل الكاملة
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          )}
         </div>
 
         {/* شبكة المميزات */}

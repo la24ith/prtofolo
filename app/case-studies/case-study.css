@@ -1,0 +1,276 @@
+/*
+  ثيم صفحات الـ Case Study — مُقيَّد بالكامل داخل .case-study-theme
+  حتى لا يتصادم أبدًا مع متغيرات الثيم الغامق العام للموقع (globals.css)
+*/
+
+.case-study-theme,
+.case-study-theme *,
+.case-study-theme *::before,
+.case-study-theme *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.case-study-theme {
+  /* الألوان الافتراضية — تُستبدل لكل تطبيق عبر inline CSS variables من data/case-studies.ts */
+  --jade: #0E6F5C;
+  --jade-dk: #0A4F41;
+  --jade-lt: #E3EFEC;
+  --jade-mid: #1a8f76;
+  --brass: #C08A2E;
+  --brass-lt: #F3E4C4;
+  --ink: #1C1B19;
+  --ink-muted: #6B6862;
+  --surface: #F6F5F2;
+  --surface-el: #FFFFFF;
+  --hairline: #E4E1DA;
+  --error: #B23A2E;
+  --error-lt: #F6E1DE;
+  --plum: #6B2C43;
+  --plum-lt: #F0E1E7;
+
+  font-family: var(--font-cairo), 'Cairo', sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.case-study-theme .cs-hero {
+  background: linear-gradient(135deg, var(--jade-dk) 0%, var(--jade) 60%, var(--jade-mid) 100%);
+  color: #fff;
+  padding: 8.5rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.case-study-theme .cs-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.case-study-theme .cs-hero-inner { position: relative; max-width: 680px; margin: 0 auto; }
+.case-study-theme .cs-hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.9);
+  font-size: 12px; font-weight: 600;
+  padding: 5px 14px; border-radius: 20px;
+  margin-bottom: 1.5rem; letter-spacing: .04em;
+}
+.case-study-theme .cs-hero h1 {
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 700; line-height: 1.25;
+  margin-bottom: .75rem;
+}
+.case-study-theme .cs-hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  color: rgba(255,255,255,0.8);
+  max-width: 500px; margin: 0 auto 2rem;
+}
+.case-study-theme .cs-hero-stats {
+  display: flex; justify-content: center; gap: 2rem;
+  flex-wrap: wrap;
+}
+.case-study-theme .cs-hero-stat { text-align: center; }
+.case-study-theme .cs-hero-stat-n { font-size: 2rem; font-weight: 700; display: block; }
+.case-study-theme .cs-hero-stat-l { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.case-study-theme .cs-hero-divider {
+  width: 1px; background: rgba(255,255,255,0.2);
+  height: 40px; align-self: center;
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+.case-study-theme .cs-container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+.case-study-theme section.cs-section { padding: 3.5rem 0; }
+.case-study-theme section.cs-section + section.cs-section { border-top: 1px solid var(--hairline); }
+
+.case-study-theme .cs-section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  color: var(--jade); text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+.case-study-theme .cs-section-title {
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-weight: 700; margin-bottom: 1rem;
+}
+.case-study-theme .cs-section-desc {
+  font-size: 15px; color: var(--ink-muted);
+  max-width: 600px; line-height: 1.75;
+}
+
+/* ── Cards ─────────────────────────────────────────────────── */
+.case-study-theme .cs-card {
+  background: var(--surface-el);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+.case-study-theme .cs-card.accent-jade { border-color: var(--jade); border-width: 1.5px; }
+.case-study-theme .cs-card.accent-brass { border-color: var(--brass); border-width: 1.5px; }
+
+/* ── Apps grid (تدعم تطبيق واحد أو أكثر) ──────────────────────── */
+.case-study-theme .cs-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem; margin-top: 2rem;
+}
+.case-study-theme .cs-app-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+.case-study-theme .cs-app-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+  background: var(--jade-lt);
+}
+.case-study-theme .cs-app-name { font-size: 16px; font-weight: 700; }
+.case-study-theme .cs-app-sub { font-size: 12px; color: var(--ink-muted); margin-top: 1px; }
+
+.case-study-theme .cs-feat-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.case-study-theme .cs-feat-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: var(--ink-muted);
+}
+.case-study-theme .cs-feat-list li::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--jade); flex-shrink: 0; margin-top: 6px;
+}
+.case-study-theme .cs-feat-list strong { color: var(--ink); font-weight: 600; }
+
+/* ── Stats row ─────────────────────────────────────────────── */
+.case-study-theme .cs-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px; margin-top: 2rem;
+}
+.case-study-theme .cs-stat-card {
+  background: var(--surface-el);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+.case-study-theme .cs-stat-card-n { font-size: 2rem; font-weight: 700; color: var(--jade); display: block; }
+.case-study-theme .cs-stat-card-l { font-size: 12px; color: var(--ink-muted); margin-top: 4px; }
+
+/* ── Tech stack ────────────────────────────────────────────── */
+.case-study-theme .cs-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px; margin-top: 1.5rem;
+}
+.case-study-theme .cs-tech-item {
+  background: var(--surface-el);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: .75rem 1rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.case-study-theme .cs-tech-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.case-study-theme .cs-tech-item-name { font-size: 13px; font-weight: 600; }
+.case-study-theme .cs-tech-item-desc { font-size: 11px; color: var(--ink-muted); }
+
+/* ── Workflow (تدفق العمل / رحلة المستخدم) ────────────────────── */
+.case-study-theme .cs-flow {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 6px; margin-top: 1.5rem;
+}
+.case-study-theme .cs-flow-step {
+  background: var(--jade-lt);
+  border: 1px solid var(--jade);
+  border-radius: 8px;
+  padding: .5rem .9rem;
+  font-size: 13px; font-weight: 600;
+  color: var(--jade-dk);
+}
+.case-study-theme .cs-flow-arrow { color: var(--ink-muted); font-size: 18px; padding: 0 6px; }
+.case-study-theme .cs-flow-step.cancel { background: var(--error-lt); border-color: var(--error); color: var(--error); }
+
+/* ── Highlights (قرارات/ميزات معمارية) ─────────────────────────── */
+.case-study-theme .cs-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px; margin-top: 1.5rem;
+}
+.case-study-theme .cs-highlight-item {
+  background: var(--surface-el);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 1rem;
+}
+.case-study-theme .cs-highlight-icon { font-size: 1.4rem; margin-bottom: .5rem; }
+.case-study-theme .cs-highlight-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.case-study-theme .cs-highlight-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.5; }
+
+/* ── Roadmap ───────────────────────────────────────────────── */
+.case-study-theme .cs-phases { display: flex; flex-direction: column; gap: 12px; margin-top: 1.5rem; }
+.case-study-theme .cs-phase {
+  display: flex; align-items: flex-start; gap: 16px;
+  background: var(--surface-el);
+  border: 1px solid var(--hairline);
+  border-radius: 12px; padding: 1.25rem;
+}
+.case-study-theme .cs-phase-badge {
+  font-size: 12px; font-weight: 700;
+  padding: 4px 12px; border-radius: 20px;
+  flex-shrink: 0; margin-top: 2px;
+}
+.case-study-theme .cs-phase-badge.v0 { background: var(--jade-lt); color: var(--jade-dk); }
+.case-study-theme .cs-phase-badge.v1 { background: var(--brass-lt); color: #6b4a10; }
+.case-study-theme .cs-phase-badge.v2 { background: var(--plum-lt); color: var(--plum); }
+.case-study-theme .cs-phase-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.case-study-theme .cs-phase-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
+.case-study-theme .cs-phase-status {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 10px; margin-top: 6px;
+}
+.case-study-theme .cs-phase-status.done { background: var(--jade-lt); color: var(--jade-dk); }
+.case-study-theme .cs-phase-status.soon { background: var(--plum-lt); color: var(--plum); }
+
+/* ── CTA ───────────────────────────────────────────────────── */
+.case-study-theme .cs-cta {
+  background: var(--jade-dk);
+  color: #fff; text-align: center;
+  padding: 3.5rem 1.5rem;
+}
+.case-study-theme .cs-cta h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: .75rem; }
+.case-study-theme .cs-cta p {
+  color: rgba(255,255,255,0.75); font-size: 15px;
+  margin-bottom: 1.75rem; max-width: 480px; margin-inline: auto;
+}
+.case-study-theme .cs-cta-btn {
+  display: inline-block;
+  background: var(--brass); color: #fff;
+  font-family: inherit;
+  font-size: 15px; font-weight: 700;
+  padding: .85rem 2rem; border-radius: 10px;
+  text-decoration: none;
+  transition: background .18s;
+}
+.case-study-theme .cs-cta-btn:hover { background: #a87828; }
+.case-study-theme .cs-cta-footnote { margin-top: 1.5rem; color: rgba(255,255,255,0.4); font-size: 12px; }
+
+/* ── Back link ─────────────────────────────────────────────── */
+.case-study-theme .cs-back {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,0.85);
+  font-size: 13px; font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+.case-study-theme .cs-back:hover { color: #fff; }
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .case-study-theme .cs-hero { padding: 7rem 1.25rem 3rem; }
+  .case-study-theme .cs-hero-stats { gap: 1.25rem; }
+  .case-study-theme .cs-hero-divider { display: none; }
+  .case-study-theme .cs-flow-arrow { display: none; }
+  .case-study-theme .cs-flow-step { font-size: 12px; }
+}
