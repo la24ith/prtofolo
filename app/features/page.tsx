@@ -31,6 +31,7 @@ const appFeatureSets: AppFeatureSet[] = [
     slug: 'health-dashboard',
     name: 'لوحة تحكم نظام صحي',
     category: 'Health',
+     caseStudySlug: 'health-dashboard',
     tagline: 'إدارة كاملة للبرامج الصحية والمستخدمين من مكان واحد',
     icon: 'https://res.cloudinary.com/olhrhert/image/upload/v1783605586/%D9%84%D9%88%D8%BA%D9%88_%D9%84%D9%88%D8%AD%D8%A9_%D8%A7%D9%84%D8%AA%D8%AD%D9%83%D9%85_rkcky6.png',
     features: [
@@ -43,6 +44,7 @@ const appFeatureSets: AppFeatureSet[] = [
   {
     id: 2,
     slug: 'clinic-app',
+    
     name: 'تطبيق عيادتي',
     category: 'Health',
     tagline: 'إدارة العيادة الطبية وتسجيل المرضى بكل سهولة وسرعة',
@@ -62,6 +64,7 @@ const appFeatureSets: AppFeatureSet[] = [
     slug: 'motaa-taghyeer',
     name: 'تطبيق متعة التغيير',
     category: 'Health',
+     caseStudySlug: 'motaa-taghyeer',
     tagline: 'رفيقك اليومي لمتابعة وزنك والتزامك بأسلوب حياة صحي',
     icon: 'https://res.cloudinary.com/olhrhert/image/upload/v1783595785/photo_1_2026-07-08_11-51-05-removebg-preview_g3kb7j.png',
     features: [
@@ -75,6 +78,7 @@ const appFeatureSets: AppFeatureSet[] = [
     id: 4,
     slug: 'akare-app',
     name: 'تطبيق عقار',
+     caseStudySlug:'akare-app',
     category: 'Real Estate',
     tagline: 'تصفح وابحث عن عقار أحلامك بثقة، أينما كنت',
     icon: 'https://res.cloudinary.com/olhrhert/image/upload/v1784200252/app_icon1_j39mdp.png',
@@ -94,6 +98,7 @@ const appFeatureSets: AppFeatureSet[] = [
     slug: 'akare-admin',
     name: 'لوحة تحكم عقاري',
     category: 'Real Estate',
+     caseStudySlug:'akare-admin',
     tagline: 'إدارة كاملة لمنصة العقارات من طرف الإدارة',
     icon: 'https://res.cloudinary.com/olhrhert/image/upload/v1784200252/app_icon1_j39mdp.png',
     features: [
@@ -110,6 +115,7 @@ const appFeatureSets: AppFeatureSet[] = [
     slug: 'akare-agent',
     name: 'تطبيق الوكيل العقاري',
     category: 'Real Estate',
+     caseStudySlug:'akare-agent',
     tagline: 'كل أدوات الوكيل العقاري في جيبه',
     icon: 'https://res.cloudinary.com/olhrhert/image/upload/v1784384344/2_beefub.png',
     features: [
