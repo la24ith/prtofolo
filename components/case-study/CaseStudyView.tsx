@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import type { CaseStudy } from '@/data/case-studies';
-import '../case-studies/case-study.css';
+import '../../app/case-studies/case-study.css';
 
 function themeVars(theme: CaseStudy['theme']): React.CSSProperties {
   return {
