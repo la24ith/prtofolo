@@ -18,7 +18,7 @@ interface AppFeatureSet {
   id: number;
   slug: string;
   name: string;
-  category: 'Health' | 'Real Estate';
+  category: 'Health' | 'Real Estate'|'E-Commerce';
   tagline: string;
   icon: string;
   features: { title: string; description: string }[];
