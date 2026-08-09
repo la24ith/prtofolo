@@ -127,6 +127,42 @@ const appFeatureSets: AppFeatureSet[] = [
       { title: 'تقارير أداء العقارات', description: 'اعرف أي عقاراتك تحقق أفضل تفاعل.' },
     ],
   },
+
+{
+  id: 7,
+  slug: 'dukan-app',
+  name: 'تطبيق دكان',
+  category: 'E-Commerce',
+  caseStudySlug: 'salla-app',
+  tagline: 'متجرك الإلكتروني السوري بين يديك',
+ icon: 'https://res.cloudinary.com/YOUR_CLOUD/image/upload/cover_salla.png',
+  features: [
+    { title: 'بحث ذكي يتحمل الأخطاء الإملائية', description: 'اعثر على ما تريد بسهولة حتى لو أخطأت في الكتابة.' },
+    { title: 'كوبونات خصم فورية', description: 'استفد من كوبونات نسبة أو مبلغ ثابت عند الدفع.' },
+    { title: 'إلغاء الطلب خلال 15 دقيقة', description: 'غيّرت رأيك؟ ألغِ طلبك بضغطة زر وسيُعاد المبلغ فورًا.' },
+    { title: 'تسوّق كزائر أو كعضو', description: 'ابدأ التسوق فورًا، وسلتك تُدمج تلقائيًا عند تسجيل الدخول.' },
+    { title: 'مفضلة وتقييمات', description: 'احفظ منتجاتك المفضلة وشارك تجربتك مع المنتجات.' },
+    { title: 'تتبع حالة الطلب', description: 'تابع طلبك خطوة بخطوة من التأكيد حتى التوصيل.' },
+  ],
+},
+
+{
+  id: 8,
+  slug: 'dukan-admin',
+  name: 'تطبيق الأدمن — دكان',
+  category: 'Admin Dashboard',
+  caseStudySlug: 'salla-app',
+  tagline: 'إدارة متجرك بالكامل من جيبك',
+  icon: 'https://res.cloudinary.com/YOUR_CLOUD/image/upload/cover_salla.png',
+  features: [
+    { title: 'إدارة الطلبات وحالاتها', description: 'تابع كل طلب وحدّث حالته بالتسلسل الصحيح فقط.' },
+    { title: 'إدارة المنتجات والتصنيفات', description: 'أضف وعدّل منتجاتك مع رفع صور مضغوطة تلقائيًا.' },
+    { title: 'كوبونات خصم ذكية', description: 'أنشئ كوبونات بنسبة أو مبلغ ثابت مع حد استخدام وتاريخ انتهاء.' },
+    { title: 'رسوم توصيل حسب المحافظة', description: 'اضبط رسوم توصيل مستقلة لكل محافظة سورية.' },
+    { title: 'حماية أمنية متعددة الطبقات', description: 'تحقق من صلاحية الأدمن عند كل تسجيل دخول وفتح للتطبيق.' },
+    { title: 'تفاصيل كاملة لكل طلب', description: 'اعرض بيانات الزبون والعنوان والمنتجات والمبالغ في نظرة واحدة.' },
+  ],
+},
 ];
 
 const categoryMeta: Record<AppFeatureSet['category'], { label: string; icon: typeof HeartPulse; color: string }> = {
