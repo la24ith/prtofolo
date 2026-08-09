@@ -150,7 +150,7 @@ const appFeatureSets: AppFeatureSet[] = [
   id: 8,
   slug: 'dukan-admin',
   name: 'تطبيق الأدمن — دكان',
-  category: 'Admin Dashboard',
+  category: 'E-Commerce',
   caseStudySlug: 'salla-app',
   tagline: 'إدارة متجرك بالكامل من جيبك',
   icon: 'https://res.cloudinary.com/YOUR_CLOUD/image/upload/cover_salla.png',
@@ -168,6 +168,7 @@ const appFeatureSets: AppFeatureSet[] = [
 const categoryMeta: Record<AppFeatureSet['category'], { label: string; icon: typeof HeartPulse; color: string }> = {
   Health: { label: 'صحة', icon: HeartPulse, color: '#27c6da' },
   'Real Estate': { label: 'عقارات', icon: Building2, color: '#7c5cfc' },
+   'E-Commerce': { label: 'متاجر', icon: Building2, color: '#7c5cfc' },
 };
 
 // ─── بطاقة ميزة واحدة ────────────────────────────────────────────────────────
