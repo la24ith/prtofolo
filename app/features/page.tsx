@@ -130,7 +130,7 @@ const appFeatureSets: AppFeatureSet[] = [
 
 {
   id: 7,
-  slug: 'dukan-app',
+  slug: 'salla-app',
   name: 'تطبيق دكان',
   category: 'E-Commerce',
   caseStudySlug: 'salla-app',
