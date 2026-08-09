@@ -166,8 +166,8 @@ const appFeatureSets: AppFeatureSet[] = [
 ];
 
 const categoryMeta: Record<AppFeatureSet['category'], { label: string; icon: typeof HeartPulse; color: string }> = {
- ' Health': { label: 'صحة', icon: HeartPulse, color: '#27c6da' },
-  'Real Estate: { label: 'عقارات', icon: Building2, color: '#7c5cfc' },
+ 'Health': { label: 'صحة', icon: HeartPulse, color: '#27c6da' },
+  'Real Estate': { label: 'عقارات', icon: Building2, color: '#7c5cfc' },
    'E-Commerce': { label: 'متاجر', icon: Building2, color: '#7c5cfc' },
 };
 
