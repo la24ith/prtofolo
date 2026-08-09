@@ -191,7 +191,7 @@ const projects: Project[] = [
   architecture: 'Clean Architecture',
   demo: '#',
   github: '#',
-  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1786265288/%D8%AF%D9%83%D8%A7%D9%86_doqfvv.jpg',
+  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1786265830/logo_l1ajja.png',
   screenshots: [
     'https://res.cloudinary.com/olhrhert/video/upload/v1786265245/%D8%AF%D9%83%D8%A7%D9%86_h3yd7q.mp4',
   ],
@@ -216,7 +216,7 @@ const projects: Project[] = [
   architecture: 'Clean Architecture',
   demo: '#',
   github: '#',
-  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1786265288/%D8%AF%D9%83%D8%A7%D9%86_doqfvv.jpg',
+  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1786265830/logo_l1ajja.png',
   screenshots: [
     'https://res.cloudinary.com/olhrhert/video/upload/v1786265244/%D8%A7%D8%AF%D9%85%D9%86_%D8%AF%D9%83%D8%A7%D9%86_jmdwqv.mp4',
   ],
