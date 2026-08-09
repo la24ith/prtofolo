@@ -182,6 +182,55 @@ const projects: Project[] = [
     'تقارير أداء العقارات المعروضة',
   ],
 },
+  {
+  id: 7,
+  title: 'دكان',
+  description: 'منصة تجارة إلكترونية متكاملة مصممة للسوق السوري، تتكوّن من تطبيق زبائن بـ 17 شاشة كاملة مع كل قواعد العمل (كوبونات، إلغاء طلبات، بحث ذكي، مفضلة، تقييمات) ولوحة تحكم أدمن مستقلة لإدارة المتجر بالكامل — من الطلبات والمنتجات وصولاً لرسوم التوصيل لكل محافظة سورية.',
+  category: 'E-Commerce',
+  tech: ['Flutter', 'Supabase', 'PostgreSQL', 'BLoC', 'Supabase Storage'],
+  architecture: 'Clean Architecture',
+  demo: '#',
+  github: '#',
+  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1786265830/logo_l1ajja.png',
+  screenshots: [
+    'https://res.cloudinary.com/olhrhert/video/upload/v1786265245/%D8%AF%D9%83%D8%A7%D9%86_h3yd7q.mp4',
+  ],
+  highlights: [
+    'تطبيقان مستقلان: تطبيق الزبون (17 شاشة) ولوحة تحكم الأدمن (5 تبويبات)',
+    'بحث ذكي يتحمل الأخطاء الإملائية عبر pg_trgm مع فلاتر متقدمة وتحميل لا نهائي',
+    'نظام طلبات محمي بـ RPCs — لا تحديث مباشر على قاعدة البيانات من التطبيق',
+    'كوبونات خصم ذكية (نسبة أو مبلغ ثابت) مع منع الاستخدام المكرر على مستوى السيرفر',
+    'إلغاء الطلب خلال 15 دقيقة مع إعادة المخزون والكوبون تلقائيًا في transaction واحدة',
+    'وضع الزائر مع دمج السلة عند تسجيل الدخول',
+    'رفع الصور مع ضغط تلقائي إلى Supabase Storage',
+    'رسوم توصيل مستقلة لكل محافظة من المحافظات السورية الـ 14',
+  ],
+},
+
+{
+  id: 8,
+  title: 'دكان — لوحة تحكم الأدمن',
+  description: 'تطبيق موبايل احترافي (Android + iOS) لإدارة متجر سلة الإلكتروني بالكامل — يتيح للأدمن متابعة الطلبات وتحديث حالتها، وإدارة المنتجات والتصنيفات مع رفع الصور، وإنشاء كوبونات الخصم، وضبط رسوم التوصيل لكل محافظة، مع حماية كاملة تمنع أي دخول غير مصرح به.',
+  category: 'Admin Dashboard',
+  tech: ['Flutter', 'Supabase', 'PostgreSQL', 'BLoC', 'Supabase Storage'],
+  architecture: 'Clean Architecture',
+  demo: '#',
+  github: '#',
+  coverImage: 'https://res.cloudinary.com/olhrhert/image/upload/v1786265830/logo_l1ajja.png',
+  screenshots: [
+    'https://res.cloudinary.com/olhrhert/video/upload/v1786265244/%D8%A7%D8%AF%D9%85%D9%86_%D8%AF%D9%83%D8%A7%D9%86_jmdwqv.mp4',
+  ],
+  highlights: [
+    'إدارة الطلبات مع فلتر الحالة والبحث — تحديث الحالة بالتسلسل الصحيح فقط عبر RPC',
+    'timeline كامل لكل طلب مع بيانات الزبون والعنوان والمنتجات والمبالغ',
+    'إضافة وتعديل المنتجات مع رفع صور مضغوطة تلقائيًا (flutter_image_compress)',
+    'إدارة التصنيفات مع ترتيب قابل للتعديل وتفعيل/إخفاء من الواجهة',
+    'كوبونات ذكية — نسبة أو مبلغ ثابت مع حد استخدامات وتاريخ انتهاء',
+    'رسوم توصيل لكل محافظة مع فلترة المحافظات المضافة مسبقًا',
+    'أمان متعدد الطبقات — فحص role=admin بعد تسجيل الدخول مباشرة وعند كل Splash',
+    'Supabase Storage منظّم بمجلدات مع policies خاصة بالأدمن فقط',
+  ],
+},
 ];
 
 const categories = ['all', 'E-Commerce', 'Health', 'Real Estate', 'Food', 'Finance', 'Social'];
