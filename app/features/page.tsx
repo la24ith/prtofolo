@@ -135,7 +135,7 @@ const appFeatureSets: AppFeatureSet[] = [
   category: 'E-Commerce',
   caseStudySlug: 'salla-app',
   tagline: 'متجرك الإلكتروني السوري بين يديك',
- icon: 'https://res.cloudinary.com/YOUR_CLOUD/image/upload/cover_salla.png',
+ icon: 'https://res.cloudinary.com/olhrhert/image/upload/v1786265830/logo_l1ajja.png',
   features: [
     { title: 'بحث ذكي يتحمل الأخطاء الإملائية', description: 'اعثر على ما تريد بسهولة حتى لو أخطأت في الكتابة.' },
     { title: 'كوبونات خصم فورية', description: 'استفد من كوبونات نسبة أو مبلغ ثابت عند الدفع.' },
@@ -153,7 +153,7 @@ const appFeatureSets: AppFeatureSet[] = [
   category: 'E-Commerce',
   caseStudySlug: 'salla-app',
   tagline: 'إدارة متجرك بالكامل من جيبك',
-  icon: 'https://res.cloudinary.com/YOUR_CLOUD/image/upload/cover_salla.png',
+  icon: 'https://res.cloudinary.com/olhrhert/image/upload/v1786265830/logo_l1ajja.png',
   features: [
     { title: 'إدارة الطلبات وحالاتها', description: 'تابع كل طلب وحدّث حالته بالتسلسل الصحيح فقط.' },
     { title: 'إدارة المنتجات والتصنيفات', description: 'أضف وعدّل منتجاتك مع رفع صور مضغوطة تلقائيًا.' },
@@ -166,8 +166,8 @@ const appFeatureSets: AppFeatureSet[] = [
 ];
 
 const categoryMeta: Record<AppFeatureSet['category'], { label: string; icon: typeof HeartPulse; color: string }> = {
-  Health: { label: 'صحة', icon: HeartPulse, color: '#27c6da' },
-  'Real Estate': { label: 'عقارات', icon: Building2, color: '#7c5cfc' },
+ ' Health': { label: 'صحة', icon: HeartPulse, color: '#27c6da' },
+  'Real Estate: { label: 'عقارات', icon: Building2, color: '#7c5cfc' },
    'E-Commerce': { label: 'متاجر', icon: Building2, color: '#7c5cfc' },
 };
 
